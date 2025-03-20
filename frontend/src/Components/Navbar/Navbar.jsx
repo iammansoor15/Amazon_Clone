@@ -84,15 +84,31 @@ function Navbar() {
     <div className={`${styles.container}`}>
       <div className={`${styles.items} flex`}>
         <img src={amazon} alt="amazon-logo" onClick={handleLogoClick} />
+
         <div className={`${styles.location} `}>
-          <span className="text-white/70 text-xs ml-5 tracking-tighter">
-            Deliver to Mansoor
-          </span>
-          <span className="flex text-white text-l  font-bold  -my-1">
-            <FaLocationDot className="text-white pr-1" />
-            <span className="mr-2">Nellore</span>
-            <span>524346</span>
-          </span>
+          {account ? (
+            <Link to="/address">
+              <span className="text-white/70 text-xs ml-5 tracking-tighter">
+                Deliver to Mansoor
+              </span>
+              <span className="flex text-white text-l  font-bold  -my-1">
+                <FaLocationDot className="text-white pr-1" />
+                <span className="mr-2">Nellore</span>
+                <span>524346</span>
+              </span>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <span className="text-white/70 text-xs ml-5 tracking-tighter">
+                Deliver to Mansoor
+              </span>
+              <span className="flex text-white text-l  font-bold  -my-1">
+                <FaLocationDot className="text-white pr-1" />
+                <span className="mr-2">Nellore</span>
+                <span>524346</span>
+              </span>
+            </Link>
+          )}
         </div>
       </div>
 
@@ -122,36 +138,41 @@ function Navbar() {
 
         <div className={`${styles.text}`}>
           <div className={styles.text1}>
-          {account ? (
-            <Link to="/logout" onClick={handleLogout}>
-              <Text
-                CText={`Hello, ${account.firstname}`}
-                HText={
-                  <span className={styles.accountLink}>
-                    Accounts & Lists <i>&#9660;</i>
-                  </span>
-                }
-              />
-            </Link>
-          ) : (
-            <Link to="/login">
-              <Text CText="Hello, sign in" HText={<span className={styles.accountLink}>
-                    Accounts & Lists <i>&#9660;</i>
-                  </span>} />
-            </Link>
-          )}
+            {account ? (
+              <Link to="/logout" onClick={handleLogout}>
+                <Text
+                  CText={`Hello, ${account.firstname}`}
+                  HText={
+                    <span className={styles.accountLink}>
+                      Accounts & Lists <i>&#9660;</i>
+                    </span>
+                  }
+                />
+              </Link>
+            ) : (
+              <Link to="/login">
+                <Text
+                  CText="Hello, sign in"
+                  HText={
+                    <span className={styles.accountLink}>
+                      Accounts & Lists <i>&#9660;</i>
+                    </span>
+                  }
+                />
+              </Link>
+            )}
           </div>
 
           <div className={styles.text2}>
-          {account ? (
-            <Link to="/orders">
-              <Text CText="Returns" HText="&orders" />
-            </Link>
-          ) : (
-            <Link to="/login">
-              <Text CText="Returns" HText={<span>&  orders</span>} />
-            </Link>
-          )}
+            {account ? (
+              <Link to="/orders">
+                <Text CText="Returns" HText="&orders" />
+              </Link>
+            ) : (
+              <Link to="/login">
+                <Text CText="Returns" HText={<span>& orders</span>} />
+              </Link>
+            )}
           </div>
         </div>
         <Link to={account ? "/cart" : "/login"} className={`${styles.cart}`}>
