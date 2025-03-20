@@ -1,0 +1,70 @@
+.paymentContainer{
+    width: 100vw;
+    min-height: 100vh;
+    background-color: white;
+}
+.loaderWrapper{
+    min-width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.loaderWrapper > div {
+    display: flex;
+    gap: 50px;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center; 
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.paymentDetails{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paymentDetails button{
+    height: 50px;
+    width: 150px;
+    color: white;
+    background-color: blueviolet;
+    border-radius: 20px;
+    border: 1px solid black;
+    font-size: large;
+
+}
+
+.paymentDetails button:hover{
+    margin: 20px;
+    border: 2px solid black;
+    background-color: blue;
+    font-weight: bold;
+}
+
+
+.successMessage{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    font-weight: bold;
+
+}
+
+
+
+.successMessage h3{
+    font-size: large;
+
+
+}

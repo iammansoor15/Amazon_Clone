@@ -1,0 +1,26 @@
+{
+  "name": "stocks-cli",
+  "version": "0.0.0",
+  "main": "./.cli/cli.js",
+  "bin": "./.cli/cli.js",
+  "files": [
+    ".cli",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "ts-cli-generator build",
+    "start": "ts-cli-generator build && node .",
+    "dev": "nodemon -e ts --ignore *.tmp.ts -x 'ts-cli-generator build && node . $1'"
+  },
+  "devDependencies": {
+    "@types/openurl": "^1.0.0",
+    "nodemon": "2.x",
+    "ts-morph": "13.x",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "@christianjuth/ts-cli-generator": "workspace:*",
+    "isomorphic-fetch": "^3.0.0",
+    "openurl": "^1.1.1"
+  }
+}

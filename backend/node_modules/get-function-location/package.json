@@ -1,0 +1,27 @@
+{
+  "name": "get-function-location",
+  "version": "2.0.0",
+  "description": "Retrieve the source location of a function in Node 8+.",
+  "repository": "git@github.com:rwjblue/get-function-location.git",
+  "license": "MIT",
+  "author": "Robert Jackson <me@rwjblue.com>",
+  "main": "index.js",
+  "scripts": {
+    "lint:js": "eslint .",
+    "test": "qunit tests/**/*-test.js"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "prettier": "^1.15.2",
+    "qunit": "^2.8.0"
+  },
+  "engines": {
+    "node": "6.* || 8.* || 10.* || >= 11"
+  },
+  "dependencies": {
+    "semver": "^5.6.0"
+  }
+}
