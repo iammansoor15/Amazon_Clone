@@ -31,6 +31,7 @@ function Navbar() {
         const data = await res.json();
 
         if (res.ok && data.cart) {
+          console.log(account.address);
           setAccount((prev) => ({ ...prev, cart: data.cart }));
         }
       } catch (error) {
@@ -75,8 +76,7 @@ function Navbar() {
     } else {
       localStorage.removeItem("account");
       setAccount(null);
-      navigate("/");
-      window.location.reload();
+      navigate("/", { replace: true });
     }
   };
 
@@ -86,25 +86,29 @@ function Navbar() {
         <img src={amazon} alt="amazon-logo" onClick={handleLogoClick} />
 
         <div className={`${styles.location} `}>
-          {account ? (
+          {account?.address ? (
             <Link to="/address">
               <span className="text-white/70 text-xs ml-5 tracking-tighter">
-                Deliver to Mansoor
+                Deliver to {account?.address?.[0]?.add_firstname|| "Guest"}
               </span>
-              <span className="flex text-white text-l  font-bold  -my-1">
+              <span className="flex text-white text-l font-bold -my-1">
                 <FaLocationDot className="text-white pr-1" />
-                <span className="mr-2">Nellore</span>
-                <span>524346</span>
+                <span className="mr-2">
+                  <span className="mr-2">
+                    {account?.address?.[0]?.addressLine2 || "City"}
+                  </span>
+                </span>
+                <span>{account?.address?.[0]?.pincode || "000000"}</span>
               </span>
             </Link>
           ) : (
             <Link to="/login">
               <span className="text-white/70 text-xs ml-5 tracking-tighter">
-                Deliver to Mansoor
+                Deliver to Guest
               </span>
-              <span className="flex text-white text-l  font-bold  -my-1">
+              <span className="flex text-white text-l font-bold -my-1">
                 <FaLocationDot className="text-white pr-1" />
-                <span className="mr-2">Nellore</span>
+                <span className="mr-2">Hyderabad</span>
                 <span>524346</span>
               </span>
             </Link>
@@ -139,7 +143,7 @@ function Navbar() {
         <div className={`${styles.text}`}>
           <div className={styles.text1}>
             {account ? (
-              <Link to="/logout" onClick={handleLogout}>
+              <Link onClick={handleLogout}>
                 <Text
                   CText={`Hello, ${account.firstname}`}
                   HText={

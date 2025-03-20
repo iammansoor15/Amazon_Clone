@@ -45,6 +45,7 @@ const SigninPassword = () => {
           localStorage.setItem("account", JSON.stringify(data.user));
           setAccount(data.user);
           await navigate('/');
+          console.log(data.user.address);
       }else{
         toast.warn(data.message, {
           position: "top-right",

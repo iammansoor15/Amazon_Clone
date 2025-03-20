@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import amazon from "../../assets/amazonblack.svg";
 import styles from './address.module.css';
 import { LoginContext } from "../../ContextProvider";
+import { toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Address = () => {
     const { account } = useContext(LoginContext);
     const navigate = useNavigate();
 
-    const [udata, setUdata] = useState({
+    const [address,setAddress] = useState({
         add_firstname: account?.firstname || "", 
         add_lastname: account?.lastname || "",
         add_email: account?.email || "",
@@ -21,15 +23,46 @@ const Address = () => {
 
     const adddata = (e) => {
         const { name, value } = e.target;
-        setUdata((prevData) => ({
+        setAddress((prevData) => ({
             ...prevData,
             [name]: value
         }));
     };
 
-    const submitData = async () => {
-        console.log(udata);
-    };
+
+
+    const addAddress = async(e)=>{
+        e.preventDefault();
+        const {add_firstname, add_lastname, add_email, add_phone, pincode, addressLine1, addressLine2, landmark} = address;
+        const res = await fetch("http://localhost:5000/newAddress",{
+            method:"POST",
+            credentials:"include",
+            headers:{
+                "Content-Type":"application/json",
+                Accept:"application/json"
+            },
+            body:JSON.stringify({add_firstname, add_lastname, add_email, add_phone, pincode, addressLine1, addressLine2, landmark})
+        })
+
+        const data = await res.json();
+
+        if(!res.ok){
+            toast.success(data || "Address not added", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+        }else{
+        console.log(data);
+        setAddress(data);
+        navigate("/")
+        }
+    }
     
     return (
         <section>
@@ -44,7 +77,7 @@ const Address = () => {
                                     type="text"
                                     name="add_firstname"
                                     onChange={adddata}
-                                    value={udata.add_firstname}
+                                    value={address.add_firstname}
                                     id="add_firstname"
                                     placeholder="Enter your first name"
                                 />
@@ -55,7 +88,7 @@ const Address = () => {
                                     type="text"
                                     name="add_lastname"
                                     onChange={adddata}
-                                    value={udata.add_lastname}
+                                    value={address.add_lastname}
                                     id="add_lastname"
                                     placeholder="Enter your last name"
                                 />
@@ -67,7 +100,7 @@ const Address = () => {
                                 type="email"
                                 name="add_email"
                                 onChange={adddata}
-                                value={udata.add_email}
+                                value={address.add_email}
                                 id="add_email"
                                 placeholder="Enter your email"
                             />
@@ -78,7 +111,7 @@ const Address = () => {
                                 type="text"
                                 name="add_phone"
                                 onChange={adddata}
-                                value={udata.add_phone}
+                                value={address.add_phone}
                                 id="add_phone"
                                 placeholder="Enter your mobile number"
                             />
@@ -90,7 +123,7 @@ const Address = () => {
                                 type="number"
                                 name="pincode"
                                 onChange={adddata}
-                                value={udata.pincode}
+                                value={address.pincode}
                                 id="pincode"
                                 placeholder="6-digit PIN code"
                             />
@@ -102,7 +135,7 @@ const Address = () => {
                                 type="text"
                                 name="addressLine1"
                                 onChange={adddata}
-                                value={udata.addressLine1}
+                                value={address.addressLine1}
                                 id="addressLine1"
                                 placeholder="Enter your address"
                             />
@@ -114,7 +147,7 @@ const Address = () => {
                                 type="text"
                                 name="addressLine2"
                                 onChange={adddata}
-                                value={udata.addressLine2}
+                                value={address.addressLine2}
                                 id="addressLine2"
                                 placeholder="Enter street details"
                             />
@@ -126,7 +159,7 @@ const Address = () => {
                                 type="text"
                                 name="landmark"
                                 onChange={adddata}
-                                value={udata.landmark}
+                                value={address.landmark}
                                 id="landmark"
                                 placeholder="E.g. near Apollo Hospital"
                             />
@@ -137,7 +170,7 @@ const Address = () => {
                             <label htmlFor="add_defaultAddress">Make this my default address</label>
                         </div>
                         <button className={styles.addressBtn}
-                         onClick={(e) => {e.preventDefault(); submitData();}}>
+                         onClick={addAddress}>
                             Continue
                         </button>
                     </form>

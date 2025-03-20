@@ -133,7 +133,6 @@ router.post("/register",async (req,res)=>{
         })
 
         const userData = await newUser.save();
-        console.log(userData)
 
         const token = await newUser.generateAuthToken();
         res.cookie("AmazonCookie", token, {
@@ -201,6 +200,7 @@ router.post('/loginPassword', async (req,res)=>{
                 firstname: User.firstname,
                 lastname: User.lastname,
                 email: User.email,
+                address: User.address,
                 cart: User.cart || [],
             })
             console.log("Cookie Generated")

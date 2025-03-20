@@ -5,6 +5,7 @@ const User = require('../models/userSchema');
 const Order = require("../models/orderSchema");
 const Authenticate = require('../Authenticate');
 const userSchema = require('../models/userSchema');
+const { route } = require('./router');
 
 
 
@@ -186,6 +187,43 @@ router.get('/usersOrders', Authenticate, async (req, res) => {
         return res.status(500).json({ message: "Internal Problem" });
     }
 });
+
+
+router.post("/newAddress",Authenticate,async(req,res)=>{
+    try{
+        const user = await User.findOne({_id:req.userID});
+        const {add_firstname, add_lastname, add_email, add_phone, pincode, addressLine1, addressLine2, landmark} = req.body;
+
+        if(!add_firstname || !add_lastname || !add_email || !add_phone || !pincode || !addressLine1 || !addressLine2 || !landmark){
+            return res.status(400).json({ error: 'All fields are required' });
+        };
+    
+        if(add_phone.length!=10){
+            return res.status(400).json({error:"Phone must be 10 digits"})
+        }
+
+        const address = user.address.push({
+            add_firstname,
+            add_lastname,
+            add_email,
+            add_phone,
+            pincode,
+            addressLine1,
+            addressLine2,
+            landmark,
+        });
+
+        await user.save(address);
+        const newAddress = user.address[user.address.length - 1]; 
+        console.log(newAddress);
+        return res.status(200).json(newAddress);
+
+
+    }catch(error){
+        return res.status(400).json({message:"error while adding the address"})
+    }
+
+})
 
 
 
