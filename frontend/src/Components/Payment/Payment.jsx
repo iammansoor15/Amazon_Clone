@@ -1,40 +1,61 @@
 import styles from "./payment.module.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Oval } from "react-loader-spinner"; 
-import successIcon from "../../assets/success.svg"; 
+import { Oval } from "react-loader-spinner";
+import successIcon from "../../assets/success.svg";
 
 const Payment = () => {
   const location = useLocation();
-  const { loading, selectedItems, productid, error } = location.state || { loading: true };
+  const { loading, selectedItems, productid, error, mewaadress } = location.state || { loading: true };
 
   const [orderStatus, setOrderStatus] = useState(null);
   const [pageLoading, setPageLoading] = useState(loading);
-  const [orderPlaced, setOrderPlaced] = useState(false); 
+  const [orderPlaced, setOrderPlaced] = useState(false);
+  const [selectAddress, setSelectAddress] = useState(mewaadress || null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (mewaadress) {
+      setSelectAddress(mewaadress);
+      console.log("Mr mansoor is printing here",mewaadress);
+      setPageLoading(false);
+    }
+  }, [mewaadress]);
+
+
+
+  useEffect(() => {
+    if (mewaadress) {
+      console.log("Hello Mr boom boom bar");
+      console.log(selectAddress)
+    }
+  }, [mewaadress,selectAddress]);
 
   useEffect(() => {
     if (selectedItems?.length > 0 || productid) {
       setPageLoading(false);
     }
-  }, [selectedItems,productid]);
+  }, [selectedItems, productid]);
 
-  useEffect(() =>{
+  useEffect(() => {
     let timer;
-    if(orderStatus=="Success"){
-      timer = setTimeout(()=>{navigate('/')},2000)
+    if (orderStatus == "Success") {
+      timer = setTimeout(() => {
+        navigate("/");
+      }, 2000);
     }
 
-    return ()=>{clearTimeout(timer)};
-  },[orderStatus,navigate])
-
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [orderStatus, navigate]);
 
   const setOrder = async () => {
-    if (orderPlaced) return; 
-    setOrderPlaced(true); 
-  
+    if (orderPlaced) return;
+    setOrderPlaced(true);
+
     setPageLoading(true);
-  
+
     try {
       const res = await fetch("http://localhost:5000/paymentSuceed", {
         method: "POST",
@@ -43,25 +64,26 @@ const Payment = () => {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify({ productIds: productid ? [productid] : selectedItems }),
+        body: JSON.stringify({
+          productIds: productid ? [productid] : selectedItems,
+        }),
       });
-  
+
       if (!res.ok) {
         throw new Error("Failed to place order");
       }
-  
+
       const data = await res.json();
       console.log("Order placed successfully:", data);
       setOrderStatus("Success");
     } catch (error) {
       console.error("Error placing order:", error.message);
       setOrderStatus("Failed");
-      setOrderPlaced(false); 
+      setOrderPlaced(false);
     } finally {
       setPageLoading(false);
     }
   };
-  
 
   return (
     <div className={styles.paymentContainer}>
@@ -79,12 +101,50 @@ const Payment = () => {
           <img src={successIcon} alt="Success" className={styles.successIcon} />
           <div>Order Placed Successfully</div>
           <h3>Thank You</h3>
-          <div >Redirecting to homepage</div>
+          <div>Redirecting to homepage</div>
         </div>
       ) : orderStatus === "Failed" ? (
         <div className={styles.errorMessage}>Failed to place order</div>
       ) : (
         <div className={styles.paymentDetails}>
+          <div className={styles.container}>
+            <div className={styles.addressContainer}>
+              <div className={styles.heading}>Address</div>
+              {selectAddress ? (
+                <>
+                  <div className={styles.firstname}>
+                    {selectAddress.add_firstname}{" "}
+                    {selectAddress.add_lastname}
+                  </div>
+                  <div className={styles.address}>
+                    <div>
+                      {selectAddress.addressLine1},{" "}
+                      {selectAddress.addressLine2}
+                    </div>
+                    <div>{selectAddress.pincode}</div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className={styles.firstname}>Mansoor</div>
+                  <div className={styles.address}>
+                    <div>Kalivelapalem, Near Rainbow CBSE School</div>
+                    <div>Nellore, 534346</div>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className={styles.btnContainer}>
+              <Link to="/address" state={{ from: "/payment" }}>
+                <button className={styles.addAddressBtn}>Add new addres</button>
+              </Link>
+
+              <Link to="/allAddress" state={{ from: "/payment" }}>
+              <button className={styles.selectAddressBtn}>Select address</button>
+              </Link>
+
+            </div>
+          </div>
           <button onClick={setOrder}>Pay</button>
         </div>
       )}

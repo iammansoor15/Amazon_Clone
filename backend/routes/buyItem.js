@@ -9,10 +9,81 @@ const { route } = require('./router');
 
 
 
+
+router.post('/addToCart/:id' , Authenticate, async(req,res)=>{
+    try{
+        const {id} = req.params;
+        const cartProduct = await HomeProductsSchema.findOne( { 'Products.id': id },{ 'Products.$': 1 });
+        const productToAdd = cartProduct.Products[0];
+        const userCart = await User.findOne({_id:req.userID});
+        console.log(userCart);
+
+        const itemPresent = userCart.cart.some((item) => item.id === productToAdd.id);
+
+        if(itemPresent){
+            return res.status(400).json({message:"Item already in cart"});
+        }
+        userCart.cart.unshift(productToAdd);
+        await userCart.save();
+        res.status(201).json(userCart);
+
+    }catch(error){
+        return res.status(400).json("Cart not available")
+    }
+})
+
+
+router.get('/cart',Authenticate, async(req,res)=>{
+    const userData = await User.findOne({_id:req.userID});
+    if(!userData){
+        return res.status(200).json("Internal Problem")
+    }
+    else{
+        return res.status(200).json(userData);
+    }
+})
+
+
+router.post('/cart/totalprice',Authenticate,async(req,res)=>{
+    const {selectedItems} = req.body;
+    if (!selectedItems || selectedItems.length === 0) {
+        return res.json({ totalPrice: 0 });
+    }
+    const userCart = await User.findOne({_id:req.userID});
+    const cartItems = await userCart.cart.filter(item =>selectedItems.includes(item.id))
+
+    const totalPrice = cartItems.reduce((sum,item)=>sum+item.Price[0]?.deal_price,0);
+    return res.status(200).json({totalPrice});
+})
+
+
+
+router.delete('/removeItem/:id', Authenticate,async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userCart = await User.findOneAndUpdate(
+      { _id: req.userID},
+      { $pull: { cart: { id: id } } },
+      { new: true }
+    );
+
+    if (!userCart) {
+      return res.status(404).json({ message: "Item not found in cart" });
+    }
+
+    res.status(200).json({ message: "Item removed successfully", userCart });
+  } catch (error) {
+    console.error("Error removing item:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+
+
 router.post("/buyItem/:id", Authenticate, async (req, res) => {
     try {
         const { id } = req.params;
-        const item = await HomeProductsSchema.findOne({ "Products.$": 1 },{ "Products.id": id });
+        const item = await HomeProductsSchema.findOne({ "Products.id": id }, { "Products.$": 1 });
 
         if (!item || !item.Products || item.Products.length === 0) {
             return res.status(404).json({ message: "Product not found" });
@@ -64,16 +135,6 @@ router.post("/buyItemsFromCart", Authenticate, async (req, res) => {
 
 
 
-// router.post("/address", Authenticate, async (req,res)=>{
-//     const user = await User.findOne(_id,req.userId);
-//     if(addressLine1.length==0){
-//         return res.status(400).json({ error: "Address Line 1 cannot be empty" });
-//     }
-//     if(landmark.length==0){
-//         return res.status(400).json({ error: "Address Line 1 cannot be empty" });
-//     }
-
-// });
 
 
 
@@ -187,44 +248,6 @@ router.get('/usersOrders', Authenticate, async (req, res) => {
         return res.status(500).json({ message: "Internal Problem" });
     }
 });
-
-
-router.post("/newAddress",Authenticate,async(req,res)=>{
-    try{
-        const user = await User.findOne({_id:req.userID});
-        const {add_firstname, add_lastname, add_email, add_phone, pincode, addressLine1, addressLine2, landmark} = req.body;
-
-        if(!add_firstname || !add_lastname || !add_email || !add_phone || !pincode || !addressLine1 || !addressLine2 || !landmark){
-            return res.status(400).json({ error: 'All fields are required' });
-        };
-    
-        if(add_phone.length!=10){
-            return res.status(400).json({error:"Phone must be 10 digits"})
-        }
-
-        const address = user.address.push({
-            add_firstname,
-            add_lastname,
-            add_email,
-            add_phone,
-            pincode,
-            addressLine1,
-            addressLine2,
-            landmark,
-        });
-
-        await user.save(address);
-        const newAddress = user.address[user.address.length - 1]; 
-        console.log(newAddress);
-        return res.status(200).json(newAddress);
-
-
-    }catch(error){
-        return res.status(400).json({message:"error while adding the address"})
-    }
-
-})
-
 
 
 

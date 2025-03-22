@@ -12,7 +12,8 @@ import ProductDetail from './Components/ProductDetail/ProductDetail';
 import { useState,useEffect } from 'react';
 import Orders from './Components/Orders/Orders';
 import Payment from './Components/Payment/Payment';
-import Address from './Components/Address/Address';
+import NewAddress from './Components/Address/NewAddress';
+import AllAddresses from './Components/Address/AllAddresses';
 
 
 
@@ -55,7 +56,8 @@ function App() {
         <Route path="/productdetail/:id" element={<ProductDetail />} />
         <Route path="/orders" element={<Orders/>}/>
         <Route path="/payment" element={<Payment/>}/>
-        <Route path="/address" element={<Address/>}/>
+        <Route path="/newAddress" element={<NewAddress/>}/>
+        <Route path="/allAddress" element={<AllAddresses/>}/>
       </Routes>
       {!hideNavbarAndFooter && <Footer/>}
     </>

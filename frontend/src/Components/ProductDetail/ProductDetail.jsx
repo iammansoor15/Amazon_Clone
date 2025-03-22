@@ -99,7 +99,7 @@ const ProductDetail = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ product})
+            body: JSON.stringify({id})
         });
 
         const data = await res.json();
