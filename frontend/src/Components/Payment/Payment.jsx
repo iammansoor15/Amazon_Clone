@@ -135,7 +135,7 @@ const Payment = () => {
               )}
             </div>
             <div className={styles.btnContainer}>
-              <Link to="/address" state={{ from: "/payment" }}>
+              <Link to="/newAddress" state={{ from: "/payment" }}>
                 <button className={styles.addAddressBtn}>Add new addres</button>
               </Link>
 

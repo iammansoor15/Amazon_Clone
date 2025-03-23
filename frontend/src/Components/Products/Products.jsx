@@ -21,20 +21,29 @@ const Products = () => {
       if (query) {
         url = `http://localhost:5000/search?query=${encodeURIComponent(query)}`;
       }
-
+  
       const response = await fetch(url);
       if (!response.ok) throw new Error("Failed to fetch Products");
-      const data = await response.json();console.log(data)
-      
-      if (data.matchedProduct) {
-        setProducts([data.matchedProduct]); // Ensure it's an array
-    } else if (data.allProducts) {
-        setProducts(data.allProducts);
-    } else {
-        setProducts([]); // Fallback to an empty array
-    }
+      const data = await response.json();
+      console.log(data); 
 
-    
+      if (query) {
+        if (data.matchedProduct) {
+          setProducts([data.matchedProduct]); 
+        } else if (data.allProducts) {
+          setProducts(data.allProducts);
+        } else {
+          setProducts([]); 
+        }
+      } else {
+        if (Array.isArray(data) && data.length > 0) {
+          const allProducts = data.flatMap((item) => item.Products);
+          setProducts(allProducts);
+        } else {
+          setProducts([]); 
+        }
+      }
+  
       setError(null);
     } catch (error) {
       setError("Failed to fetch products. Please try again later.");
@@ -42,6 +51,7 @@ const Products = () => {
       setLoading(false);
     }
   };
+
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);

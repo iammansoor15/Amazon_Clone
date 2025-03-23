@@ -4,8 +4,13 @@ export const LoginContext = createContext(null);
 
 const ContextProvider = ({ children }) => {
     const [account, setAccount] = useState(() => {
-        const storedAccount = localStorage.getItem("account");
-        return storedAccount ? JSON.parse(storedAccount) : null;
+        try {
+            const storedAccount = localStorage.getItem("account");
+            return storedAccount ? JSON.parse(storedAccount) : null;
+        } catch (error) {
+            console.error("Error parsing account from localStorage:", error);
+            return null;
+        }
     });
 
     useEffect(() => {

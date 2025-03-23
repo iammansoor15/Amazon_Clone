@@ -37,16 +37,7 @@
     cursor: pointer;
     transform: translateY(-5px); 
     box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.3);
-
 }
-
-
-.addNewAddress,.existingAddress{
-    background-color: white;
-    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-}
-
 
 
 .addNewAddress {
@@ -57,46 +48,74 @@
     align-items: center;
     justify-content: center;
     border: 1px dashed  gray;
+    background-color: white;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
 }
+
+
+/* Existing Address  */
+
+.addressBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 300px;
+    border: 1px solid gray;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.defaultAddress{
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 2% 7%;
+    border-bottom: 1px solid gray;
+
+}
+.defaultAddress>div{
+    font-weight: normal;
+    font-size: large;
+}
+
+.defaultAddress>img{
+    max-width: 15%;
+}
+
+
 
 
 
 
 .existingAddress{
-    height: 300px;
-    padding: 20px;
     font-size: medium;
     display: flex;
+    margin: 1% 7%;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid gray;
 
 }
 
 .existingAddress>div:first-child{
     font-weight: bold;
-
 }
 
 
 
 .options{
+    margin-top: auto;
     display: flex;
     width: 100%;
+    padding: 5% 7%;
     color: #2162a1;
+    font-size: medium;
+    align-items: flex-end;
 }
 
-.options>div:first-child:hover{
+.option:hover{
     cursor: pointer;
     color: rgb(3, 3, 72);
 }
-
-.options>div:nth-child(3):hover{
-    cursor: pointer;
-    color: rgb(3, 3, 72);
-}
-
-
 
 .dash{
     margin: 0px 20px;

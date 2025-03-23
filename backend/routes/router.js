@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require("mongoose");
 const router = express.Router();
 const HomeProductsSchema = require('../models/HomeProductsSchema');
 const user = require('../models/userSchema');
@@ -268,6 +269,81 @@ router.post("/newAddress", Authenticate, async (req, res) => {
     } catch (error) {
         console.error("Error while adding address:", error);
         return res.status(500).json({ message: "Error while adding the address" });
+    }
+});
+
+
+
+
+router.get('/allAddresses',Authenticate,async(req,res)=>{
+    try{
+        const User = await user.findOne({_id:req.userID});
+        if (!User || !User.address) {
+            return res.status(404).json({ message: "No addresses found" });
+        }
+        const addresses = User.address
+        return res.status(200).json(addresses);
+
+    }catch(error){
+        return res.status(500).json("Addresses cannot be shown at this moment")
+    }
+})
+
+
+router.post('/setAsDefault',Authenticate,async(req,res)=>{
+    try{
+        const {id} = req.body;
+        const User = await user.findOne({_id:req.userID})
+        
+        if (!User) {
+            return res.status(404).json({ message: "No addresses found" });
+        }
+        
+        const addressIndex = User.address.findIndex(addr=>addr._id.toString()===id);
+        if (addressIndex === -1) {
+            return res.status(404).json({ message: "Address not found" });
+        }
+
+
+        const [selectedAddress] = User.address.splice(addressIndex,1);
+        User.address.unshift(selectedAddress);
+        await User.save();
+        const userAddresses = User.address
+        console.log(userAddresses)
+        return res.status(200).json(userAddresses);
+
+    }catch(error){
+        return res.status(500).json("Addresses cannot be shown at this moment")
+    }
+
+})
+
+
+router.delete('/deleteAddress', Authenticate, async (req, res) => {
+    try {
+        const {id} = req.body;
+        const User = await user.findOne({_id:req.userID})
+        if (!User) {
+            return res.status(404).json({ message: "No addresses found" });
+        }
+
+        const addressIndex = User.address.findIndex(addr=>addr._id.toString()===id);
+        if (addressIndex === -1) {
+            return res.status(404).json({ message: "Address not found" });
+        }
+
+        const updatedUser = await user.findOneAndUpdate(
+            { _id: req.userID }, 
+            { $pull: { address: { _id: new mongoose.Types.ObjectId(id) } } }, 
+            { new: true } 
+        );
+        await User.save();
+        const userAddresses = User.address
+        return res.status(200).json(userAddresses); 
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Addresses cannot be deleted at this moment" });
     }
 });
 

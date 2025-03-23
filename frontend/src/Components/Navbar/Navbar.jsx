@@ -87,7 +87,7 @@ function Navbar() {
 
         <div className={`${styles.location} `}>
           {account?.address ? (
-            <Link to="/address">
+            <Link to="/newAddress">
               <span className="text-white/70 text-xs ml-5 tracking-tighter">
                 Deliver to {account?.address?.[0]?.add_firstname|| "Guest"}
               </span>
