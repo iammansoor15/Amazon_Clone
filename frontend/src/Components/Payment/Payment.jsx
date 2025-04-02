@@ -24,13 +24,6 @@ const Payment = () => {
   
 
   useEffect(() => {
-    if (mewadress) {
-      console.log("Hello Mr boom boom bar");
-      console.log(selectAddress);
-    }
-  }, [mewadress, selectAddress]);
-
-  useEffect(() => {
     if (selectedItems?.length > 0 || productid) {
       setPageLoading(false);
     }
@@ -56,7 +49,7 @@ const Payment = () => {
     setPageLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/paymentSuceed", {
+      const res = await fetch("https://amazon-clone-8ajl.onrender.com/paymentSuceed", {
         method: "POST",
         credentials: "include",
         headers: {

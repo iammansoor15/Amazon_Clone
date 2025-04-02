@@ -17,7 +17,7 @@ const Cart = () => {
 
   const fetchitems = async () => {
     try {
-      const res = await fetch("http://localhost:5000/cart", {
+      const res = await fetch("https://amazon-clone-8ajl.onrender.com/cart", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -50,7 +50,7 @@ const Cart = () => {
 
   const deleteItem = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/removeItem/${id}`, {
+      const res = await fetch(`https://amazon-clone-8ajl.onrender.com/removeItem/${id}`, {
         method: "DELETE",
         credentials: "include",
       });

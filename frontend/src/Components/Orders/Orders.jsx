@@ -17,7 +17,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await fetch("http://localhost:5000/usersOrders", {
+        const res = await fetch("https://amazon-clone-8ajl.onrender.com/usersOrders", {
           method: "GET",
           credentials: "include",
           headers: {
@@ -46,7 +46,7 @@ const Orders = () => {
 
   const buyItem = async (id) => {
     try {
-        const res = await fetch(`http://localhost:5000/buyItem/${id}`, {
+        const res = await fetch(`https://amazon-clone-8ajl.onrender.com/buyItem/${id}`, {
             method: "POST",
             credentials: "include",
             headers: {

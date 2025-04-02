@@ -17,9 +17,9 @@ const Products = () => {
 
   const fetchProducts = async (type, query) => {
     try {
-      let url = `http://localhost:5000/product_types/${type}`;
+      let url = `https://amazon-clone-8ajl.onrender.com/product_types/${type}`;
       if (query) {
-        url = `http://localhost:5000/search?query=${encodeURIComponent(query)}`;
+        url = `https://amazon-clone-8ajl.onrender.com/search?query=${encodeURIComponent(query)}`;
       }
 
       const response = await fetch(url);
@@ -27,11 +27,11 @@ const Products = () => {
       const data = await response.json();console.log(data)
       
       if (data.matchedProduct) {
-        setProducts([data.matchedProduct]); // Ensure it's an array
+        setProducts([data.matchedProduct]); 
     } else if (data.allProducts) {
         setProducts(data.allProducts);
     } else {
-        setProducts([]); // Fallback to an empty array
+        setProducts([]); 
     }
 
     
@@ -50,7 +50,7 @@ const Products = () => {
   }, [Type, location.search]);
 
   const addToCart = async (item) => {
-    const response = await fetch(`http://localhost:5000/addToCart/${item.id}`, {
+    const response = await fetch(`https://amazon-clone-8ajl.onrender.com/addToCart/${item.id}`, {
       method: "POST",
       headers: {
         Accept: "application/json",

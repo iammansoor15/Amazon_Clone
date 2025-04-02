@@ -138,7 +138,7 @@ router.post("/register",async (req,res)=>{
         const token = await newUser.generateAuthToken();
         res.cookie("AmazonCookie", token, {
             httpOnly: true,
-            sameSite: "lax",
+            sameSite: "none",
             secure:true
         });
 
@@ -192,7 +192,7 @@ router.post('/loginPassword', async (req,res)=>{
             console.log(token);
             res.cookie("AmazonCookie",token,{
                 httpOnly:true,
-                sameSite: "lax",
+                sameSite: "none",
                 secure:true
 
             }) 

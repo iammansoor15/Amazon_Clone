@@ -31,7 +31,7 @@ const Signup = () => {
         e.preventDefault();
         const {firstname,lastname, email,phone,password,cpassword} = udata;
 
-        const res = await fetch("http://localhost:5000/register", {
+        const res = await fetch("https://amazon-clone-8ajl.onrender.com/register", {
             method: "POST",
             credentials:"include",
             headers: {

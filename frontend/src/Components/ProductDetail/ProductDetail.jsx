@@ -28,7 +28,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/productdetail/${id}`);
+        const response = await fetch(`https://amazon-clone-8ajl.onrender.com/productdetail/${id}`);
         if (!response.ok) throw new Error("Failed to fetch Products");
 
         const data = await response.json();
@@ -49,7 +49,7 @@ const ProductDetail = () => {
   const images = product.pro_imgs || [];
 
   const addToCart = async(id) => {
-    const response = await fetch(`http://localhost:5000/addToCart/${id}`,{
+    const response = await fetch(`https://amazon-clone-8ajl.onrender.com/addToCart/${id}`,{
       method:"POST",
       headers:{
         Accept: "application/json",
@@ -93,7 +93,7 @@ const ProductDetail = () => {
 
   const buyItem = async (id) => {
     try {
-        const res = await fetch(`http://localhost:5000/buyItem/${id}`, {
+        const res = await fetch(`https://amazon-clone-8ajl.onrender.com/buyItem/${id}`, {
             method: "POST",
             credentials: "include",
             headers: {

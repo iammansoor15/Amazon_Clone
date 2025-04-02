@@ -24,7 +24,7 @@ function Navbar() {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const res = await fetch("http://localhost:5000/cart", {
+        const res = await fetch("https://amazon-clone-8ajl.onrender.com/cart", {
           method: "GET",
           credentials: "include",
         });
@@ -54,7 +54,7 @@ function Navbar() {
   };
 
   const handleLogout = async () => {
-    const res = await fetch("http://localhost:5000/logout", {
+    const res = await fetch("https://amazon-clone-8ajl.onrender.com/logout", {
       method: "POST",
       credentials: "include",
     });

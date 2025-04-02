@@ -14,7 +14,7 @@ const AllAddresses = () => {
 
   const addresses = async () => {
     try {
-      const res = await fetch("http://localhost:5000/allAddresses", {
+      const res = await fetch("https://amazon-clone-8ajl.onrender.com/allAddresses", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -40,7 +40,7 @@ const AllAddresses = () => {
 
   const setAsDefault = async (_id) => {
     try {
-      const res = await fetch("http://localhost:5000/setAsDefault", {
+      const res = await fetch("https://amazon-clone-8ajl.onrender.com/setAsDefault", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -65,7 +65,7 @@ const AllAddresses = () => {
 
   const deleteAddress = async(_id)=>{
     try{
-      const res = await fetch("http://localhost:5000/deleteAddress",{
+      const res = await fetch("https://amazon-clone-8ajl.onrender.com/deleteAddress",{
         method:"DELETE",
         credentials:"include",
         headers:{

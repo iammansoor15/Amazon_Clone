@@ -51,7 +51,7 @@ const NewAddress = () => {
         console.log("Sending address data:", address);  
     
         try {
-            const res = await fetch("http://localhost:5000/newAddress", {
+            const res = await fetch("https://amazon-clone-8ajl.onrender.com/newAddress", {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -81,7 +81,7 @@ const NewAddress = () => {
     
 
     const updateAddres = async(e) =>{
-        const res = await fetch("http://localhost:5000/editAddress",{
+        const res = await fetch("https://amazon-clone-8ajl.onrender.com/editAddress",{
             method:'POST',
             credentials:"include",
             headers:{

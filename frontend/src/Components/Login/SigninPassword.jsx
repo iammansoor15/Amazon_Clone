@@ -20,7 +20,7 @@ const SigninPassword = () => {
 
 
     try{
-      const res = await fetch("http://localhost:5000/loginPassword",{
+      const res = await fetch("https://amazon-clone-8ajl.onrender.com/loginPassword",{
         method:'POST',
         credentials:"include",
         headers:{
@@ -32,16 +32,6 @@ const SigninPassword = () => {
 
 
       if(res.ok){
-        toast.success("Logged-in Successfully", {
-            position: "top-right",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          })
           localStorage.setItem("account", JSON.stringify(data.user));
           setAccount(data.user);
           await navigate('/');
