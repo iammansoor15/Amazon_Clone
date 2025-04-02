@@ -17,7 +17,7 @@ const Products = () => {
 
   const fetchProducts = async (type, query) => {
     try {
-      let url = `https://amazon-clone-8ajl.onrender.com/product_types/${type}`;
+      let url = `https://amazon-clone-8ajl.onrender.com/product_types/${type.toLowerCase()}`;
       if (query) {
         url = `https://amazon-clone-8ajl.onrender.com/search?query=${encodeURIComponent(query)}`;
       }
