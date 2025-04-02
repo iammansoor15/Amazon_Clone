@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './navbarBanner.module.css';
+import styles from './NavbarBanner.module.css';
 import { IoMdMenu } from "react-icons/io";
 import { Link } from 'react-router';
 
