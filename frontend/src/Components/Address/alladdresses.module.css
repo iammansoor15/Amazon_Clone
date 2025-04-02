@@ -1,0 +1,133 @@
+.container {
+    min-width: 100vw;
+    min-height: 100vh;
+    padding: 30px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.container > div:first-child {
+    font-weight: 600;
+    font-size: xx-large;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+}
+
+.addressContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    justify-content: start;
+    align-content: start;
+    width: 100%;
+}
+
+
+
+.addNewAddress {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    font-size: medium;
+    color: black;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray;
+    border-radius: 7px;
+    box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.5);
+}
+
+
+
+.existingAddress{
+    padding: 0px 10px;
+    color: black;
+    font-size: medium;
+    display: flex;
+    flex-direction: column;
+    height: 70%; 
+    margin: 20px 0px;
+}
+
+.addNewAddress:hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: translateY(-5px); 
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); 
+}
+
+
+
+.addressBox{
+    border: 1px solid gray;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.5);
+    border-radius: 7px;
+    
+}
+
+.defaultAddress{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: end;
+    font-size: medium;
+    font-weight: lighter;
+    border-bottom: 1px solid gray;
+    padding: 5px 10px;
+}
+
+
+.defaultAddress>img{
+    height: 70%;
+}
+
+
+
+.existingAddress>div:last-child{
+    color: #2162a1;
+}
+
+.existingAddress>div:last-child:hover{
+    color: #0c3353;;
+    cursor: pointer;
+}
+
+
+
+.options{
+    width: 100%;
+    display: flex;
+    gap: 5%;
+    font-size: 14px;
+    color: #2162a1;
+    padding: 0px 10px;
+    margin-bottom: 30px;
+}
+
+.option:hover{
+    cursor: pointer;
+    color: #0c3353;
+}
+
+
+
+.dash{
+    color: black;
+}
+
+.dash:hover{
+    color: black;
+    cursor: default;
+}
