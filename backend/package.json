@@ -15,10 +15,10 @@
   "version": "1.0.0",
   "description": "Amazpn clone backend",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "kill-port 5000 && nodemon index.js"
-  },
+"scripts": {
+  "start": "node server.js",
+  "dev": "nodemon server.js"
+},
   "author": "Mansoor",
   "license": "ISC",
   "devDependencies": {
