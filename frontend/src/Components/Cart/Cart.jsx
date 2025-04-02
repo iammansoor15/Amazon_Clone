@@ -91,7 +91,7 @@ const Cart = () => {
 
   useEffect(() => {
     const fetchTotalPrice = async () => {
-      const res = await fetch("http://localhost:5000/cart/totalprice", {
+      const res = await fetch("https://amazon-clone-8ajl.onrender.com/cart/totalprice", {
         credentials: "include",
         method: "post",
         headers: {
@@ -119,7 +119,7 @@ const Cart = () => {
     navigate("/payment", { state: { loading: true } });
   
     try {
-      const res = await fetch("http://localhost:5000/buyItemsFromCart", {
+      const res = await fetch("https://amazon-clone-8ajl.onrender.com/buyItemsFromCart", {
         method: "POST",
         credentials: "include",
         headers: {
