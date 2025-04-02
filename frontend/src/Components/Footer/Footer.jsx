@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "./Footer.module.css";
-import amazonLogo from '../../Assets/amazon.svg'
+import amazonLogo from '../../assets/amazon.svg'
 const Footer = () => {
     return (
         <div className={styles.footer}>
