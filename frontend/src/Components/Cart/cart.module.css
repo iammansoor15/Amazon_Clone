@@ -1,0 +1,147 @@
+.screen {
+  display: flex;
+  padding: 30px;
+  min-height: 100vh;
+}
+
+.items {
+  background-color: white;
+  width: 80%;
+  padding: 20px;
+  margin-right: 20px;
+}
+
+.itemDesc {
+  display: flex;
+}
+
+.productImg {
+  max-width: 200px;
+  display: flex;
+  align-items: center;
+}
+.desc{
+  display: flex;
+}
+.descText {
+  flex: 1;
+}
+
+.descAmnt {
+  display: flex;
+  width: 100px;
+}
+
+.selectOpt {
+  display: flex;
+  width: 75%;
+  justify-content: space-between;
+  align-items: center;
+  color: #2162a1;
+  font-size: medium;
+  margin: 10px 0;
+}
+
+.quantity {
+  width: 100px;
+  height: 30px;
+  display: flex;
+  font-weight: bold;
+  color: black;
+  justify-content: space-around;
+  border: 3px solid #ffce12;
+  border-radius: 15px;
+  align-items: center;
+}
+
+.amount {
+  min-width: 20%;
+  background-color: white;
+  padding: 20px;
+}
+
+.amount > button {
+  background-color: #ffce12;
+  width: 100%;
+  padding: 5px;
+  margin: 10px 0;
+  border-radius: 15px;
+}
+
+.emi {
+  margin: 5px 0;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+
+
+@media (max-width: 800px) {
+  .screen {
+    flex-direction: column-reverse;
+    align-items: center;
+    min-width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+
+  .items {
+    min-width: 100vw;
+    padding: 5px;
+  }
+  .productImg {
+    width: 40%;
+  }
+  .itemDesc{
+    margin: 30px 0px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(157, 148, 148);
+  }
+  .desc{
+    width: 60%;
+    flex-direction: column;
+    justify-content: start;
+  }
+  .descText{
+    margin: 0px;
+    padding:0px;
+  }
+  .ItemTitle {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4em;
+    max-height: calc(1.4em * 2);
+    width: 100%;
+  }
+
+  .selectOpt{
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+
+  }
+  
+
+  .options {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4em;
+    max-height: calc(1.4em * 2);
+    width: 100%;
+
+  }
+  
+  .amount {
+    width: 100vw;
+    top: 0;
+    position: sticky;
+  }
+}

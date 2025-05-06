@@ -1,0 +1,44 @@
+.footer{
+    color: white;
+    width: 100vw;
+    background-color: #232F3E;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.amazonImg{
+    margin-top: 40px;
+}
+.amazonImgFooter{
+    width: 110px;
+}
+
+.footerContent{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}
+
+@media (max-width: 800px) {
+    .footerContent{
+        width: 100%;
+    }
+}
+.contentFooterTitle{
+    font-weight: 700;
+}
+.contentFooterSubTitlediv{
+    margin-top: 10px;
+    font-size: 15px;
+}
+.contentFooterSubTitleCont{
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+hr {
+    border: 1px solid #ccc; 
+    width: 100%; 
+    margin: 20px 0; 
+  }

@@ -1,0 +1,52 @@
+.homepage {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.loading{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.banners {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.banners::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%; 
+    background: linear-gradient(to top, white, rgba(0, 0, 0, 0)); 
+    pointer-events: none; 
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    width: 100%;
+    padding: 0px 20px;
+    justify-content: center;
+    margin-top: -50vh; 
+    z-index: 1;
+    justify-items: center;
+}
+
+@media (max-width: 800px) {
+    .grid {
+        margin-top: -70vh;
+    }
+}

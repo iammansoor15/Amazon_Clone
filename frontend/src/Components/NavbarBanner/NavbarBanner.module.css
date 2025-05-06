@@ -1,0 +1,45 @@
+.navbarBanner {
+    background-color: #232f3e;
+    padding: 0 0 0 11px;
+    display: flex;
+    height: 39px;
+    width: 100%;
+    justify-content: flex-start; 
+    color: white;
+    position: relative;
+    top: 0;
+    z-index: 20;
+    overflow-x: auto; 
+    white-space: nowrap; 
+    scrollbar-width: none;
+}
+
+.navbarBanner::-webkit-scrollbar {
+    display: none;
+}
+
+.navbarBannerOptionsLeft {
+    display: flex;
+    white-space: nowrap;
+}
+
+.optionsNavbarBanner {
+    display: inline-flex;
+    padding: 8px 9px;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    align-items: center;
+    cursor: pointer;
+}
+
+.optionsNavbarBanner:hover {
+    border: 1px solid white;
+    border-radius: 3px;
+}
+
+.allOptionsNavbarBanner {
+    font-size: 14px;
+    padding-left: 5px;
+    font-weight: 400;
+}

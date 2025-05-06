@@ -1,0 +1,62 @@
+.card{
+    width: 300px;
+    background-color: white;
+    padding: 30px 20px 10px 30px;
+    
+}
+
+.card>h2{
+    min-height: 60px;
+    font-size: xx-large;
+}
+.all{
+    margin-top: 30px;
+    color: #3872ab;
+    cursor: pointer;
+    &:hover{
+        color: #022140;
+    }
+}
+
+.card>h2{
+    color: black;
+    font-weight: bold;
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px; 
+
+}
+
+
+.image {
+    width: 100%;
+    aspect-ratio: 1 / 1;         /* Keep square shape */
+    background-color: #e0e0e0;   /* Placeholder color */
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+}
+
+/* Optional: Add a placeholder icon/text when image is missing */
+.products > div {
+    position: relative;
+    min-height: 150px; /* Ensures space is reserved even if image is hidden */
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.products>div>p {
+    font-size: small;
+    font-weight: 500;
+
+}
+
+
+

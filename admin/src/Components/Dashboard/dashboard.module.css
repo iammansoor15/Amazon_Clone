@@ -1,0 +1,24 @@
+.container{
+    min-width: 100vw;
+}
+
+.orderCard{
+    min-width: 100vw;
+    padding: 30px;
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+
+}
+
+.orderCard div{
+    width: 300px;
+    background: linear-gradient(to right, #7cd2d2, #4a4b4d);
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: larger;
+    font-weight: bold;
+    display: flex;
+    padding: 20px;
+}

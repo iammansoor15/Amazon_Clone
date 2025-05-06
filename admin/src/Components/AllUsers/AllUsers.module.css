@@ -1,0 +1,44 @@
+.container {
+    min-width: 100vw;
+    min-height: 100vh;
+    padding: 30px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+
+
+.userContainer{
+    width: 100%;
+    padding: 0px 10px;
+    color: black;
+    font-size: medium;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    margin: 20px 0px;
+}
+
+.userCard{
+
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #7cd2d2, #4a4b4d);
+
+}
+.userCard>div:first-child{
+    font-size: large;
+    font-weight: bold;
+}
+
+.userCard div{
+    font-size: large;
+}
+
+
+.userName{
+    display: flex;
+    gap: 5px;
+}

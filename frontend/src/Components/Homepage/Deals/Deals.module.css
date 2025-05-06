@@ -1,0 +1,49 @@
+.blank {
+    width: 100vw;
+    padding: 25px 30px;
+  }
+  
+  .deals {
+    background-color: white;
+    padding: 20px;
+    overflow-x: auto; 
+  }
+  
+  .deals > h2 {
+    color: black;
+    font-weight: bold;
+    font-size: 21px;
+    margin: 10px 0px;
+  }
+  
+  .products {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; 
+    overflow-y: hidden; 
+    padding-bottom: 10px; 
+    align-items: center; 
+    white-space: nowrap; 
+  }
+  .products::-webkit-scrollbar { 
+    display: none; 
+  }
+
+  
+  .image-container {
+    flex-shrink: 0; 
+    min-width: 150px; 
+  }
+  
+  .details {
+    flex: 0 0 auto; 
+    width: 150px; 
+    box-sizing: border-box; 
+  }
+  
+  .details > img {
+    width: 100%; 
+    height: auto; 
+    aspect-ratio: 9 / 16; 
+    object-fit: cover; 
+  }

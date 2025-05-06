@@ -1,0 +1,117 @@
+section{
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    overflow: hidden;
+}
+
+.sign_container{
+    width: 25%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign_header img{
+    width: 115px;
+    margin: 20px 0px;
+    cursor: pointer;
+}
+
+.sign_form{
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: 1px solid #adb1b8;
+}
+
+.sign_form h1{
+    font-weight: 500;
+    font-size: 27px;
+    margin: 10px 0;
+}
+
+.sign_form label{
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 1px;
+}
+
+.sign_form input{
+    width: 100%;
+    height: 31px;
+    padding: 3px 7px;
+    border-radius: 3px;
+    outline: none;
+    border:1px solid #888c8c;
+    margin-bottom: 10px;
+    margin-top: 1px;
+}
+
+
+.sign_form .signin_btn {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    background: rgb(247, 202, 0);
+    cursor: pointer;
+    height: 35px;
+    outline: none;
+    color: #111;
+    border-radius: 15px; 
+}
+
+.sign_form input:focus{
+    padding: 10px;
+    border: 2px solid black;
+
+}
+
+.sign_form .signin_info{
+    margin-top: 23px;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.sign_form .signin_info p{
+    font-size: 13px;
+    font-weight: 600;
+    color: #222;
+}
+
+
+.sign_form .signin_info a{
+    font-size: 13px;
+    letter-spacing: .5px;
+    margin-left: 5px;
+    color: #0066c0;
+    text-decoration: none;
+    font-weight:600;
+}
+
+
+/* for login page */
+.create_accountinfo p{
+    font-size: 12px;
+    text-align: center;
+    color: #767676;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.create_accountinfo button{
+    height: 29px;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid #adb1b8;
+    outline: none;
+    margin-top: 15px;
+}
+
+.create_accountinfo a{
+    text-decoration: none;
+    color: black;
+    padding: 10px 35px;
+    font-size: 15px;
+    font-weight: 500;
+}

@@ -1,0 +1,32 @@
+.navbar{
+    display: flex;
+    height: 50px;
+    color: black;
+    justify-content: end;
+    background: linear-gradient(to right, #171818, #4a4b4d);}
+
+.options{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style-type: none;
+    
+}
+
+.options li a{
+    text-decoration: none;
+    color: rgb(237, 237, 237);
+    font-size: large;
+
+}
+
+.options li a:hover{
+    text-decoration: none;
+    color: white;
+    font-size: larger;
+    cursor: pointer;
+    font-weight: bolder;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: translateY(-5px); 
+}
